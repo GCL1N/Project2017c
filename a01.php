@@ -123,18 +123,27 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 .editarea{
-	height: 600px;
+	height: auto;
 	max-width:90%;
 	margin: auto;
-	margin-top:50px;
+	margin-top:auto;
 	text-align: center;
-	
+}
+.formtitile{
+	text-align:center;
+	font-size:18px;
 }
 -->
 </style>
+<!-- InstanceBeginEditable name="head" -->
 <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 
+<!-- InstanceEndEditable -->
 </head>
+
+
 
 <body>
 <div class="TOP" >
@@ -153,23 +162,26 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
            <ul id="MenuBar1" class="MenuBarHorizontal">
            <div class="header">    
   <!-- InstanceBeginEditable name="EditRegion2" -->
-  <div align="center">
-  <?php 
+<div align="center">
+ <?php 
 include("mysql_connect.inc.php");
 $sidt = $_SESSION['sidt'];
 
 //此判斷為判定觀看此頁有沒有權限
 //說不定是路人或不相關的使用者
 //因此要給予排除
-if($_SESSION['username'] != NULL ){
-	echo '<div><a href="member.php">修改資料</div>';
-    echo '<div><a href="logout.php">登出</a></div>';
-	}
+if($_SESSION['username'] != NULL ){	
+	echo <<<EOT
+	<div><a href="member.php">修改資料</a></div>
+    <div><a href="logout.php">登出</a></div>
+EOT;
+}
 else if($_SESSION['username'] == NULL ){
 	echo $_SESSION['username'];
-	echo '<div><a href="login_a01.php">登入</a></div>';
-    echo '<div><a href="register.php">註冊</a></div>';
-	
+	echo <<<EOT
+	<div><a href="login_a01.php">登入</a></div>
+    <div><a href="register.php">註冊</a></div>
+EOT;
 }   
 ?>
 </div>
@@ -184,19 +196,29 @@ else if($_SESSION['username'] == NULL ){
   <div class="editarea">
   	<a href="a01.php"><img src="images/LOGOa.png" width="500" height="500" /></a>
     
-<?php
-include("mysql_connect.inc.php");
-
-//此判斷為判定觀看此頁有沒有權限
-//說不定是路人或不相關的使用者
-//因此要給予排除
-if($_SESSION['username'] != null ){
-	echo '<div align="center"><a href="member.php"><img src="images/updatebtn.png" width="150" height="75" />&nbsp;&nbsp;<a href="logout.php"><img src="images/logoutbtn.png" width="150" height="75" /></a></div>';
-	}
-else if($_SESSION['username'] == null ){
-	echo '<div><a href="login_a01.php"><img src="images/loginbtn.png" width="150" height="75" />&nbsp;&nbsp;&nbsp;<a href="register.php"><img src="images/regibtn.png" width="150" height="75" /></a></div>';
+	<?php
+    include("mysql_connect.inc.php");
+    
+    //此判斷為判定觀看此頁有沒有權限
+    //說不定是路人或不相關的使用者
+    //因此要給予排除
 	
-}   
+if($_SESSION['username'] != NULL){
+	echo <<<EOT
+	<div align="center">
+	<a href="member.php"><img src="images/updatebtn.png" width="150" height="75"/>&nbsp;&nbsp;
+	<a href="logout.php"><img src="images/logoutbtn.png" width="150" height="75"/></a>
+	</div>
+EOT;
+}
+else if($_SESSION['username'] == null ){
+	echo <<<EOT
+	<div>
+	<a href="login_a01.php"><img src="images/loginbtn.png" width="150" height="75" />&nbsp;&nbsp;&nbsp;
+	<a href="register.php"><img src="images/regibtn.png" width="150" height="75" /></a>
+	</div>
+EOT;
+}
 ?>
 </div>
   <!-- InstanceEndEditable --></div>
@@ -205,4 +227,5 @@ else if($_SESSION['username'] == null ){
 </div>
 </body>
 <div class="footer"><strong>本網站目前僅供研究、交流之用。</strong>  </div>
-<!-- InstanceEnd --></html>
+<!-- InstanceEnd -->
+</html>

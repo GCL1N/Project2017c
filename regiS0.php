@@ -123,18 +123,32 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 .editarea{
-	height: 600px;
+	height: auto;
 	max-width:90%;
 	margin: auto;
-	margin-top:50px;
+	margin-top:auto;
 	text-align: center;
-	
+}
+.formtitile{
+	text-align:center;
+	font-size:18px;
 }
 -->
 </style>
+<!-- InstanceBeginEditable name="head" -->
 <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
-
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+<link href="SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css">
+<link href="SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css">
+<link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css">
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
+<!-- InstanceEndEditable -->
 </head>
+
+
 
 <body>
 <div class="TOP" >
@@ -179,23 +193,60 @@ else if($_SESSION['username'] == null ){
 <div class="container">
   <div class="header">    
   <!-- InstanceBeginEditable name="EditRegion3" -->
-<div class="editarea">
-
-<h1> 平台註冊</h1>
-<?php
+<div class="editarea"> 
+  <?php
 if($_SESSION['sid'] == null)
 {
 $_SESSION['sid'] = 'root'; 
 }
-echo '<form name="form" method="post" action="regiS0_finish.php">'; 
-echo '平台名稱：　<input type="text" name="id" > <br><br>';
-echo '密碼：　<input type="password" name="pw" > <br><br>';
-echo '再一次輸入密碼：　<input type="password" name="pw2" > <br><br>';
-echo '<input type="submit" n ame="button" value="確定" >';
-echo '</form>';
+echo <<<EOT
+<h1>平台註冊</h1>
+  <form name="form" method="post" action="regiS0_finish.php">
+    <div class="formtitile">平台名稱<br></div>
+	<span id="sprytextfield2">
+    <label for="text1"></label>
+    <input type="text" name="id" id="id">
+    <span class="textfieldRequiredMsg"><br>請輸入您的平台名稱。</span>
+	</span><br><br>
+    <div class="formtitile">密碼<br></div>
+	<span id="sprypassword1">
+      <label for="pw"></label>
+      <input type="password" name="pw" id="pw">
+      <span class="passwordRequiredMsg"><br>請輸入密碼。</span></span>
+	<br><br>
+    <div class="formtitile">再一次輸入密碼<br></div>
+	<span id="spryconfirm1">
+      <label for="pw2"></label>
+      <input type="password" name="pw2" id="pw2">
+      <span class="confirmRequiredMsg"><br>請確認密碼。</span><span class="confirmInvalidMsg">密碼不相符。</span></span>
+	<br><br>
+	<div class="formtitile">電子信箱<br></div>
+	<span id="sprytextfield1">
+      <label for="mail"></label>
+      <input type="text" name="mail" id="mail">
+      <span class="textfieldRequiredMsg"><br>請輸入信箱。</span></span>
+	<br><br>
+	  <div class="formtitile">申請原因(簡短說明使用目的)<br></div>
+	 <span id="sprytextarea1">
+      <label for="reason"></label>
+      <textarea name="reason" id="reason" cols="45" rows="5"></textarea>
+      <span class="textareaRequiredMsg"><br>請輸入說明。</span></span>
+	  <br><br>
+  	<input type="submit" name="button" value="確定" >
+  </form>
+EOT;
 ?>
+
+<script type="text/javascript">
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
+var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "pw");
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+var sprytextarea1 = new Spry.Widget.ValidationTextarea("sprytextarea1");
+
+</script>
 </div>
-<!-- InstanceEndEditable --></div>
+  <!-- InstanceEndEditable --></div>
  
   
 </div>

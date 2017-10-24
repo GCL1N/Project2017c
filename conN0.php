@@ -123,18 +123,27 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 .editarea{
-	height: 600px;
+	height: auto;
 	max-width:90%;
 	margin: auto;
-	margin-top:50px;
+	margin-top:auto;
 	text-align: center;
-	
+}
+.formtitile{
+	text-align:center;
+	font-size:18px;
 }
 -->
 </style>
+<!-- InstanceBeginEditable name="head" -->
 <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 
+<!-- InstanceEndEditable -->
 </head>
+
+
 
 <body>
 <div class="TOP" >
@@ -175,7 +184,7 @@ $row = @mysql_fetch_row($result);
 
 //判斷帳號與密碼是否為空白
 //以及MySQL資料庫裡是否有這個會員
-if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw)
+if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw && $row[4] == 'y')
 {
         //將帳號寫入session，方便驗證使用者身份
         $_SESSION['username'] = $id;
@@ -206,6 +215,11 @@ if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw)
 			break;
 		}
         
+}
+else if ($row[4] == 'n'){
+	echo <<<EOT
+	<h1>平台尚未認證成功，請聯絡管理員。</h1>
+EOT;
 }
 else
 {

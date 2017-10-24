@@ -122,18 +122,27 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 .editarea{
-	height: 600px;
+	height: auto;
 	max-width:90%;
 	margin: auto;
-	margin-top:50px;
+	margin-top:auto;
 	text-align: center;
-	
+}
+.formtitile{
+	text-align:center;
+	font-size:18px;
 }
 -->
 </style>
+<!-- InstanceBeginEditable name="head" -->
 <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 
+<!-- InstanceEndEditable -->
 </head>
+
+
 
 <body>
 <div class="TOP" >
