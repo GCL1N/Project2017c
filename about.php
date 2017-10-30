@@ -100,6 +100,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	color: #FFF;
 	text-align: center;
 	width:100%;
+	margin-top:50px;
 }
 
 /* ~~ 其他 float/clear 類別 ~~ */
@@ -154,7 +155,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
              <li><a href="a01.php"><strong>網站A</strong></a> </li>
              <li><a href="a02.php"><strong>網站B</strong></a></li>
              <li><a href="a03.php"><strong>網站C</strong></a> </li>
-             <li>          <a href="about.php"><strong>關於我們</strong></a> </li>
+             <li><a href="about.php"><strong>關於我們</strong></a> </li>
            </ul>
       </div></td>
       <td width="221" align="center" valign="middle" nowrap="nowrap"><div align="right">

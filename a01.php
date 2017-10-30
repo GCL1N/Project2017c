@@ -101,6 +101,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	color: #FFF;
 	text-align: center;
 	width:100%;
+	margin-top:50px;
 }
 
 /* ~~ 其他 float/clear 類別 ~~ */
@@ -155,7 +156,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
              <li><a href="a01.php"><strong>網站A</strong></a> </li>
              <li><a href="a02.php"><strong>網站B</strong></a></li>
              <li><a href="a03.php"><strong>網站C</strong></a> </li>
-             <li>          <a href="about.php"><strong>關於我們</strong></a> </li>
+             <li><a href="about.php"><strong>關於我們</strong></a> </li>
            </ul>
       </div></td>
       <td width="221" align="center" valign="middle" nowrap="nowrap"><div align="right">
@@ -194,8 +195,6 @@ EOT;
   <div class="header">    
   <!-- InstanceBeginEditable name="EditRegion3" -->
   <div class="editarea">
-  	<a href="a01.php"><img src="images/LOGOa.png" width="500" height="500" /></a>
-    
 	<?php
     include("mysql_connect.inc.php");
     
@@ -205,21 +204,42 @@ EOT;
 	
 if($_SESSION['username'] != NULL){
 	echo <<<EOT
-	<div align="center">
-	<a href="member.php"><img src="images/updatebtn.png" width="150" height="75"/>&nbsp;&nbsp;
-	<a href="logout.php"><img src="images/logoutbtn.png" width="150" height="75"/></a>
-	</div>
+	<table width="350" align="center">
+	  <tr>
+		<td>
+		<div align="center">
+		<a href="member.php"><img src="images/updatebtn.png" width="150" height="75"/></a>
+		</div>
+		</td>
+		<td>
+		<div align="center">
+		<a href="logout.php"><img src="images/logoutbtn.png" width="150" height="75"/></a>
+		</div>
+		</td>
+	  </tr>
+	</table>
 EOT;
 }
 else if($_SESSION['username'] == null ){
 	echo <<<EOT
-	<div>
-	<a href="login_a01.php"><img src="images/loginbtn.png" width="150" height="75" />&nbsp;&nbsp;&nbsp;
-	<a href="register.php"><img src="images/regibtn.png" width="150" height="75" /></a>
-	</div>
+	<table width="350" align="center">
+	  <tr>
+		<td>
+		<div align="center">
+		<a href="login_a01.php"><img src="images/loginbtn.png" width="150" height="75" /></a>
+		</div>
+		</td>
+		<td>
+		<div align="center">
+		<a href="register.php"><img src="images/regibtn.png" width="150" height="75" /></a>
+		</div>
+		</td>
+	  </tr>
+	</table>
 EOT;
 }
 ?>
+	<a href="a01.php"><img src="images/LOGOa.png" width="500" height="500" /></a>
 </div>
   <!-- InstanceEndEditable --></div>
  
@@ -227,5 +247,4 @@ EOT;
 </div>
 </body>
 <div class="footer"><strong>本網站目前僅供研究、交流之用。</strong>  </div>
-<!-- InstanceEnd -->
-</html>
+<!-- InstanceEnd --></html>
