@@ -11,9 +11,9 @@ body {
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-family: Verdana, Arial, Helvetica, sans-serif,微軟正黑體;;
 	text-align: left;
-	background-image:url(images/BG.jpg);
+	background-image:url(../images/BG.jpg);
 	background-repeat:repeat-y;
 	background-attachment: fixed;
 }
@@ -47,24 +47,29 @@ a:hover, a:active, a:focus {
 
 
 .container {
-	width: 60%;
+	width: 80%;
 	max-width: 1260px;
-	min-width: 780px;/* 建議您使用最小寬度，如此版面在大型螢幕上就不致於過窄，讓行在側欄中保持比較方便閱讀的長度。IE6 並不適用這項宣告。 */
-	margin: 0 auto; /* 兩側的自動值與寬度結合後，版面便會置中對齊。如果將 .container 的寬度設為 100%，就不需要這麼做。 */
+	min-width: 780px;
+	margin: 0 auto; 
 }
 
-/* ~~ 頁首沒有指定的寬度，而會橫跨版面的整個寬度。頁首包含影像預留位置，必須由您自己的連結商標加以取代 ~~ */
+.content {
+	padding: 25px 0;
+	padding-left: 5%;
+}
 .header {
 	width: 100%;
 }
-
-
-.content {
-	padding: 10px 0;
-	width: 100%;
-	float: left;
-	background-color:#FFF;
+.inner{
+	text-align: center;
+	font-size:20px ;
+	letter-spacing: 5px;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 25px 0;
 }
+
+
 
 
 /* ~~ 這個群組選取器會在 .content 區域空間中提供清單 ~~ */
@@ -134,6 +139,12 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	text-align:center;
 	font-size:18px;
 }
+.copyright {
+			color: #999;
+			margin-top: 1.5em;
+			text-align: center;
+			font-size: 0.9em;
+		}
 -->
 </style>
 <!-- InstanceBeginEditable name="head" -->
@@ -173,13 +184,16 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 <div class="editarea">
 <?php
 include("mysql_connect.inc.php");
+include("PHPMailerAutoload.php"); //匯入PHPMailer類別 
 $sid = $_SESSION['sid'];
 $sidt = "`'$sid'_users`";
 $id = $_POST['id'];
 $pw = $_POST['pw'];
 $pw2 = $_POST['pw2'];
-$mail = $_POST['mail'];
+$email = $_POST['email'];
 $reason = $_POST['reason'];
+$iipp=$_SERVER["REMOTE_ADDR"];
+
 //判斷帳號密碼是否為空值
 //確認密碼輸入的正確性
 $sql = "SELECT * FROM $sidt";
@@ -188,34 +202,57 @@ $row = mysql_fetch_row($result);
 if($id != null && $pw != null && $pw2 != null && $pw == $pw2)
 {		
 	//新增資料進資料庫語法
-     $sql = "INSERT INTO `project2017c`.$sidt (`SID`,`password`,`mail`,`reason`) VALUES ('$id','$pw','$mail',$reason);";
+     $sql = "INSERT INTO `project2017c`.$sidt (`SID`,`password`,`email`,`reason`,`IP`) VALUES ('$id','$pw','$email','$reason','$iipp');";
      if(mysql_query($sql))
      {
-		unset($_SESSION['username']);
+		unset($_SESSION['username']);		
 		echo <<<EOT
 			<h1>註冊成功!請等待通知，將派人替您審核資格。</h1>
-			<meta http-equiv=REFRESH 	CONTENT=2;url=index.php>
+			<meta http-equiv=REFRESH 	CONTENT=10;url=index.php>
+			<a href="index.php">系統將自動轉跳，或按此手動轉跳。</a>			
 EOT;
+			$mail = new PHPMailer(true);
+			$mail->isSMTP();
+			$mail->Host = 'smtp.office365.com';
+			$mail->Port       = 587;
+			$mail->SMTPSecure = 'tls';
+			$mail->SMTPAuth   = true;
+			$mail->Username = '104021018@live.asia.edu.tw';
+			$mail->Password = '19961210';
+			$mail->SetFrom('104021018@live.asia.edu.tw', 'project2017c');
+			$mail->addAddress('asd96851210@gmail.com', 'ToEmail');
+			//$mail->SMTPDebug  = 3;
+			//$mail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";}; //$mail->Debugoutput = 'echo';
+			$mail->IsHTML(true);
+			
+			$mail->Subject = 'Project2017c NEW';
+			$mail->Body    = 'NEW USER <br> <a href="http://isrc.ccs.asia.edu.tw/~project2017c/">http://isrc.ccs.asia.edu.tw/~project2017c/</a>';
+			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+			$mail->send();
+			
     }
 	else
 	{	
     	echo <<<EOT
-		<h1>註冊失敗! 平台名稱有人使用</h1>		
-		<meta http-equiv=REFRESH CONTENT=2;url=regiS0.php>
+		<h1>註冊失敗! 平台名稱有人使用<br></h1>		
+		<meta http-equiv=REFRESH CONTENT=10;url=regiS0.php>
+		<a href="regiS0.php">系統將自動轉跳，或按此手動轉跳。</a>
 EOT;
 	}
 }
 else if($pw != $pw2)
 {
 	echo <<<EOT
-	<h1>註冊失敗! 密碼確認錯誤</h1>
-	<meta http-equiv=REFRESH CONTENT=2;url=regiS0.php>
+	<h1>註冊失敗! 密碼確認錯誤<br></h1>
+	<meta http-equiv=REFRESH CONTENT=10;url=regiS0.php>
+	<a href="regiS0.php">系統將自動轉跳，或按此手動轉跳。</a>
 EOT;
 }
 else{
 	echo <<<EOT
-	<h1>無權使用</h1>
-	<meta http-equiv=REFRESH CONTENT=2;url=index.php>
+	<h1>無權使用<br></h1>
+	<meta http-equiv=REFRESH CONTENT=10;url=index.php>
+	<a href="regiS0.php">系統將自動轉跳，或按此手動轉跳。</a>
 EOT;
 }
 ?>
@@ -226,4 +263,9 @@ EOT;
 </div>
 </body>
 <div class="footer"><strong>本網站目前僅供研究、交流之用。</strong>  </div>
+<div class="copyright">
+		<ul class="menu">
+			<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="https://www.facebook.com/profile.php?id=100000424224637">GCL1N</a></li>
+		</ul>
+	</div>
 <!-- InstanceEnd --></html>

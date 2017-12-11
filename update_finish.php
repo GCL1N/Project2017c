@@ -11,9 +11,9 @@ body {
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-family: Verdana, Arial, Helvetica, sans-serif,微軟正黑體;;
 	text-align: left;
-	background-image:url(images/BG.jpg);
+	background-image:url(../images/BG.jpg);
 	background-repeat:repeat-y;
 	background-attachment: fixed;
 }
@@ -47,24 +47,29 @@ a:hover, a:active, a:focus {
 
 
 .container {
-	width: 60%;
+	width: 80%;
 	max-width: 1260px;
-	min-width: 780px;/* 建議您使用最小寬度，如此版面在大型螢幕上就不致於過窄，讓行在側欄中保持比較方便閱讀的長度。IE6 並不適用這項宣告。 */
-	margin: 0 auto; /* 兩側的自動值與寬度結合後，版面便會置中對齊。如果將 .container 的寬度設為 100%，就不需要這麼做。 */
+	min-width: 780px;
+	margin: 0 auto; 
 }
 
-/* ~~ 頁首沒有指定的寬度，而會橫跨版面的整個寬度。頁首包含影像預留位置，必須由您自己的連結商標加以取代 ~~ */
+.content {
+	padding: 25px 0;
+	padding-left: 5%;
+}
 .header {
 	width: 100%;
 }
-
-
-.content {
-	padding: 10px 0;
-	width: 100%;
-	float: left;
-	background-color:#FFF;
+.inner{
+	text-align: center;
+	font-size:20px ;
+	letter-spacing: 5px;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 25px 0;
 }
+
+
 
 
 /* ~~ 這個群組選取器會在 .content 區域空間中提供清單 ~~ */
@@ -134,6 +139,12 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	text-align:center;
 	font-size:18px;
 }
+.copyright {
+			color: #999;
+			margin-top: 1.5em;
+			text-align: center;
+			font-size: 0.9em;
+		}
 -->
 </style>
 <!-- InstanceBeginEditable name="head" -->
@@ -188,32 +199,39 @@ if($_SESSION['username'] != null && $pw != null && $pw2 != null && $pw == $pw2 &
         $sql = "UPDATE `project2017c`.$sidt SET `password` = '$pw' WHERE $sidt.`username` = '$id'";
         if(mysql_query($sql)){
                 echo '<h1>修改成功!</h1>';
-                echo '<meta http-equiv=REFRESH CONTENT=2;url=member.php>';
+                echo '<meta http-equiv=REFRESH CONTENT=10;url=member.php>';
+				echo '<a href="member.php">系統將自動轉跳，或按此手動轉跳。</a>';
         }
         else{
                 echo '<h1>修改失敗!</h1>';
-                echo '<meta http-equiv=REFRESH CONTENT=2;url=member.php>';
+                echo '<meta http-equiv=REFRESH CONTENT=10;url=member.php>';
+				echo '<a href="member.php">系統將自動轉跳，或按此手動轉跳。</a>';
         }
 }
 else if($pw == null || $pw2 == null || $opw == null || $opw2 == null){
-	echo '<h1>請確認密碼是否正確填寫</h1>';
-	echo '<meta http-equiv=REFRESH CONTENT=2;url=update.php>';
+	echo '<h1>請確認密碼是否正確填寫</h1><br>';
+	echo '<meta http-equiv=REFRESH CONTENT=10;url=update.php>';
+	echo '<a href="update.php">系統將自動轉跳，或按此手動轉跳。</a>';
 }
 else if($opw2 != $opw){
-	echo '<h1>請確認原密碼是否正確</h1>';
-	echo '<meta http-equiv=REFRESH CONTENT=2;url=update.php>';
+	echo '<h1>請確認原密碼是否正確</h1><br>';
+	echo '<meta http-equiv=REFRESH CONTENT=10;url=update.php>';
+	echo '<a href="update.php">系統將自動轉跳，或按此手動轉跳。</a>';
 }
 else if($pw2 != $pw){
-	echo '<h1>請確認新密碼是否正確填寫</h1>';
-	echo '<meta http-equiv=REFRESH CONTENT=2;url=update.php>';
+	echo '<h1>請確認新密碼是否正確填寫</h1><br>';
+	echo '<meta http-equiv=REFRESH CONTENT=10;url=update.php>';
+	echo '<a href="update.php">系統將自動轉跳，或按此手動轉跳。</a>';
 }
 else if($pw == $opw){
-	echo '<h1>新密碼不可與原密碼相同</h1>';
-	echo '<meta http-equiv=REFRESH CONTENT=2;url=update.php>';
+	echo '<h1>新密碼不可與原密碼相同</h1><br>';
+	echo '<meta http-equiv=REFRESH CONTENT=10;url=update.php>';
+	echo '<a href="update.php">系統將自動轉跳，或按此手動轉跳。</a>';
 }
 else{
-        echo '您無權限觀看此頁面!';
-        echo '<meta http-equiv=REFRESH CONTENT=2;url=index.php>';
+        echo '您無權限觀看此頁面!<br>';
+        echo '<meta http-equiv=REFRESH CONTENT=10;url=error.php>';
+		echo '<a href="error.php">系統將自動轉跳，或按此手動轉跳。</a>';
 }
 ?>
 </div>
@@ -223,4 +241,9 @@ else{
 </div>
 </body>
 <div class="footer"><strong>本網站目前僅供研究、交流之用。</strong>  </div>
+<div class="copyright">
+		<ul class="menu">
+			<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="https://www.facebook.com/profile.php?id=100000424224637">GCL1N</a></li>
+		</ul>
+	</div>
 <!-- InstanceEnd --></html>

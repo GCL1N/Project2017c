@@ -1,4 +1,5 @@
-<html>
+ <?php session_start();?>
+<html><!-- InstanceBegin template="/Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -146,11 +147,11 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 		}
 -->
 </style>
-<!-- TemplateBeginEditable name="head" -->
-<link href="../SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
-<link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
-<script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<!-- TemplateEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<!-- InstanceEndEditable -->
 </head>
 
 
@@ -159,27 +160,72 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 <div class="TOP" >
   <table width="100%" border="0" bgcolor="#333333">
     <tr>
-      <td width="229"> &nbsp;&nbsp; &nbsp; &nbsp; <a href="../index.php"><img src="../images/LOGO.png" width="150" height="150" /></a></td>
+      <td width="229"> &nbsp;&nbsp; &nbsp; &nbsp; <a href="index.php"><img src="images/LOGO.png" width="150" height="150" /></a></td>
          <td width="375" align="center" valign="middle" nowrap="nowrap"><div align="center">
            <ul id="MenuBar1" class="MenuBarHorizontal">
              <li><a href="a01.php"><strong>網站A</strong></a> </li>
              <li><a href="a02.php"><strong>網站B</strong></a></li>
              <li><a href="a03.php"><strong>網站C</strong></a> </li>
-             <li><a href="../about.php"><strong>關於我們</strong></a> </li>
+             <li><a href="about.php"><strong>關於我們</strong></a> </li>
            </ul>
       </div></td>
       <td width="221" align="center" valign="middle" nowrap="nowrap"><div align="right">
            <ul id="MenuBar1" class="MenuBarHorizontal">
            <div class="header">    
-  <!-- TemplateBeginEditable name="EditRegion2" --><!-- TemplateEndEditable --></div>
+  <!-- InstanceBeginEditable name="EditRegion2" -->
+     <div align="center">
+  
+<?php
+include("mysql_connect.inc.php");
+$sidt = $_SESSION['sidt'];
+
+//此判斷為判定觀看此頁有沒有權限
+//說不定是路人或不相關的使用者
+//因此要給予排除
+if($_SESSION['username'] != null && $_SESSION['username'] != 'root'  ){
+	echo '<div><a href="member.php">平台修改資料</div>';
+    echo '<div><a href="logout.php">平台登出</a></div>';
+	}
+else if($_SESSION['username'] == 'root' ){
+	echo '<div><a href="root.php">平台修改資料</div>';
+    echo '<div><a href="logout.php">平台登出</a></div>';
+	}	
+else if($_SESSION['username'] == null ){
+	echo '<div><a href="login.php">平台登入</a></div>';
+    echo '<div><a href="register.php">平台註冊</a></div>';
+	
+}   
+?>
+<!-- InstanceEndEditable --></div>
     </tr>
     
   </table>
 </div>
 <div class="container">
   <div class="header">    
-  <!-- TemplateBeginEditable name="EditRegion3" -->
-  <!-- TemplateEndEditable --></div>
+  <!-- InstanceBeginEditable name="EditRegion3" -->
+  <div class="inner">
+ <?php
+include("mysql_connect.inc.php");
+$sidt = $_SESSION['sidt'];
+
+if($_SESSION['username'] != null && $_SESSION['username'] == 'root'){
+echo <<<EOT
+	  <form method="post" action="check_finish.php">
+      要審核的帳號：<input type="text" name="id">
+	  <br><br>
+      <input type="submit" name="button" value="確認" >
+      </form>
+EOT;
+}
+else{
+        echo '您無權限觀看此頁面!<br>';
+        echo '<meta http-equiv=REFRESH CONTENT=10;url=error.php>';
+		echo '<a href="error.php">系統將自動轉跳，或按此手動轉跳。</a>';
+}
+?>
+</div>
+  <!-- InstanceEndEditable --></div>
  
   
 </div>
@@ -190,4 +236,4 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 			<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="https://www.facebook.com/profile.php?id=100000424224637">GCL1N</a></li>
 		</ul>
 	</div>
-</html>
+<!-- InstanceEnd --></html>
