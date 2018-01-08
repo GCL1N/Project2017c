@@ -6,7 +6,7 @@ mysql_select_db("project2017c");
 
 //對資料庫連線
 if(!@$link_ID)
-        die("無法對資料庫連線");
+	die("無法對資料庫連線");
 
 //資料庫連線採UTF8
 mysql_query("SET NAMES utf8");

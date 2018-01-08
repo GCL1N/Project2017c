@@ -1,36 +1,26 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<title>Project2017c</title>
-
-<style type="text/css">
-<!--
 body {
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-	font-family: Verdana, Arial, Helvetica, sans-serif,微軟正黑體;;
+	font-family: Verdana, Arial, Helvetica, sans-serif,微軟正黑體;
 	text-align: left;
 	background-image:url(../images/BG.jpg);
 	background-repeat:repeat-y;
 	background-attachment: fixed;
 }
-
 /
 ul, ol, dl { 
 	padding: 0;
 	margin: 0;
 }
 h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	 素接觸。 
+	margin-top: 0;
 	padding-right: 15px;
 	padding-left: 15px; 
 }
 a img { 
 	border: none;
 }
-
 a:link {
 	color:#414958;
 	text-decoration: underline; 
@@ -42,16 +32,12 @@ a:visited {
 a:hover, a:active, a:focus { 
 	text-decoration: none;
 }
-
-
-
 .container {
 	width: 80%;
 	max-width: 1260px;
 	min-width: 780px;
 	margin: 0 auto; 
 }
-
 .content {
 	padding: 25px 0;
 	padding-left: 5%;
@@ -67,15 +53,10 @@ a:hover, a:active, a:focus {
 	margin-right: 10%;
 	padding: 25px 0;
 }
-
-
-
-
 /* ~~ 這個群組選取器會在 .content 區域空間中提供清單 ~~ */
 .content ul, .content ol { 
 	padding: 0 15px 15px 40px; /* 這個欄位間隔反映出上方標題和段落規則中的右方間隔。當欄位間隔位於下方時，便可將清單中的其他元素間隔開來；當位於左方時，則可藉此建立縮排。這些動作均可依需要進行調整。 */
 }
-
 /* ~~ 導覽清單樣式 (如果選擇使用 Spry 之類的預製飛出選單，則可移除) ~~ */
 ul.nav {
 	list-style: none; /* 這會移除清單標記 */
@@ -95,7 +76,6 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	background-color: #6F7D94;
 	color: #FFF;
 }
-
 /* ~~ 頁尾 ~~ */
 .footer {
 	padding: 10px 0;
@@ -107,7 +87,6 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	width:100%;
 	margin-top:50px;
 }
-
 /* ~~ 其他 float/clear 類別 ~~ */
 .fltrt {  /* 這個類別可用來讓元素在頁面中浮動，浮動的元素必須位於頁面上相鄰的元素之前。 */
 	float: right;
@@ -123,9 +102,23 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	font-size: 1px;
 	line-height: 0px;
 }
-.TOP table tr td #MenuBar1 li a strong {
+#top{
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100px;
+}
+#top table tr td #MenuBar1 li a strong {
+	display: block;
+	margin: 0 10px;
 	text-align: center;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	align-items: center;
+}
+#top > .logo {
+	display: block;
+	margin: 0 10px;
+	height: 100px;
 }
 .editarea{
 	height: auto;
@@ -139,55 +132,8 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	font-size:18px;
 }
 .copyright {
-			color: #999;
-			margin-top: 1.5em;
-			text-align: center;
-			font-size: 0.9em;
-		}
--->
-</style>
-<!-- TemplateBeginEditable name="head" -->
-<link href="../SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
-<link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
-<script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<!-- TemplateEndEditable -->
-</head>
-
-
-
-<body>
-<div class="TOP" >
-  <table width="100%" border="0" bgcolor="#333333">
-    <tr>
-      <td width="229"> &nbsp;&nbsp; &nbsp; &nbsp; <a href="../index.php"><img src="../images/LOGO.png" width="150" height="150" /></a></td>
-         <td width="375" align="center" valign="middle" nowrap="nowrap"><div align="center">
-           <ul id="MenuBar1" class="MenuBarHorizontal">
-             <li><a href="a01.php"><strong>網站A</strong></a> </li>
-             <li><a href="a02.php"><strong>網站B</strong></a></li>
-             <li><a href="a03.php"><strong>網站C</strong></a> </li>
-             <li><a href="../about.php"><strong>關於我們</strong></a> </li>
-           </ul>
-      </div></td>
-      <td width="221" align="center" valign="middle" nowrap="nowrap"><div align="right">
-           <ul id="MenuBar1" class="MenuBarHorizontal">
-           <div class="header">    
-  <!-- TemplateBeginEditable name="EditRegion2" --><!-- TemplateEndEditable --></div>
-    </tr>
-    
-  </table>
-</div>
-<div class="container">
-  <div class="header">    
-  <!-- TemplateBeginEditable name="EditRegion3" -->
-  <!-- TemplateEndEditable --></div>
- 
-  
-</div>
-</body>
-<div class="footer"><strong>本網站目前僅供研究、交流之用。</strong>  </div>
-<div class="copyright">
-		<ul class="menu">
-			<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="https://www.facebook.com/profile.php?id=100000424224637">GCL1N</a></li>
-		</ul>
-	</div>
-</html>
+	color: #999;
+	margin-top: 1.5em;
+	text-align: center;
+	font-size: 0.9em;
+}
