@@ -7,16 +7,15 @@
 		<link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
 		<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
 		<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-		<!-- InstanceEndEditable -->
 	</head>
 	<body>
 		<div id="top">
-			<table width="100%" border="0" bgcolor="#333333">
+			<table width="100%">
 				<tr>
-					<td width="20%"><a class="logo" href="index.php" ><img src="images/LOGO.png" height="100px"></a></td>
-					<td width="60%" align="center" align="middle" nowrap="nowrap">
-						<div align="center">
-							<ul id="MenuBar1" class="MenuBarHorizontal">
+					<td width="30%"><a href="index.php" ><img src="images/LOGO.png" height="100px"></a></td>
+					<td width="60%">
+						<div>
+							<ul class="MenuBarHorizontal">
 								<li><a href="a01.php"><strong>網站A</strong></a> </li>
 								<li><a href="a02.php"><strong>網站B</strong></a></li>
 								<li><a href="a03.php"><strong>網站C</strong></a> </li>
@@ -24,11 +23,11 @@
 							</ul>
 						</div>
 					</td>
-					<td width="20%" align="center" valign="middle" nowrap="nowrap">
-						<div align="right">
-							<ul id="MenuBar1" class="MenuBarHorizontal">
+					<td width="10%"  nowrap="nowrap">
+						<div>
+							<ul class="MenuBarHorizontal">
 								<div class="header">    
-									<div align="center">
+									<div>
 										<?php					include("mysql_connect.inc.php");
 										$sidt = $_SESSION['sidt'];
 										//此判斷為判定觀看此頁有沒有權限

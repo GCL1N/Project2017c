@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php 
+session_start();
+?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -35,7 +37,9 @@
 						<div class="editarea">
 							<?php
 							include("mysql_connect.inc.php");
-							include("PHPMailerAutoload.php"); //匯入PHPMailer類別 
+							use PHPMailer\PHPMailer\PHPMailer;
+							use PHPMailer\PHPMailer\Exception;
+							require 'vendor/autoload.php'; //匯入PHPMailer類別    
 							$sid = $_SESSION['sid'];
 							$sidt = "`'$sid'_users`";
 							$id = $_POST['id'];
@@ -62,22 +66,25 @@
 			<a href="index.php">系統將自動轉跳，或按此手動轉跳。</a>			
 EOT;
 									$mail = new PHPMailer(true);
-									$mail->isSMTP();
-									$mail->Host = 'smtp.office365.com';
-									$mail->Port       = 587;
-									$mail->SMTPSecure = 'tls';
-									$mail->SMTPAuth   = true;
-									$mail->Username = '104021018@live.asia.edu.tw';
-									$mail->Password = '19961210';
-									$mail->SetFrom('104021018@live.asia.edu.tw', 'project2017c');
-									$mail->addAddress('asd96851210@gmail.com', 'ToEmail');
-									//$mail->SMTPDebug  = 3;
-									//$mail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";}; //$mail->Debugoutput = 'echo';
-									$mail->IsHTML(true);
-									$mail->Subject = 'Project2017c NEW';
-									$mail->Body    = 'NEW USER <br> <a href="http://isrc.ccs.asia.edu.tw/~project2017c/">http://isrc.ccs.asia.edu.tw/~project2017c/</a>';
-									$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-									$mail->send();
+									//Server settings
+									try{
+										//$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+										$mail->isSMTP();                                      // Set mailer to use SMTP
+										$mail->Host = 'smtp.office365.com';  // Specify main and backup SMTP servers
+										$mail->SMTPAuth = true;                               // Enable SMTP authentication
+										$mail->Username = '104021018@live.asia.edu.tw';                 // SMTP username
+										$mail->Password = '19961210';                           // SMTP password
+										$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+										$mail->Port = 587;                                    // TCP port to connect to
+										//Recipients
+										$mail->setFrom('104021018@live.asia.edu.tw', 'Mailer');
+										$mail->addAddress('104021018@live.asia.edu.tw', 'Joe User');     // Add a recipient
+										//Content
+										$mail->isHTML(true);                                  // Set email format to HTML
+										$mail->Subject = 'Project2017c NEW';
+										$mail->Body    = 'NEW USER</b><br><a href="http://isrc.ccs.asia.edu.tw/~project2017c/">http://isrc.ccs.asia.edu.tw/~project2017c/</a>';
+										$mail->send();
+									} catch (Exception $e) {}
 								}
 								else
 								{	

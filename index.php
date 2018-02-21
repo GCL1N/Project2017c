@@ -37,12 +37,12 @@
 									echo '<div><a href="logout.php">平台登出</a></div>';
 								}
 								else if($_SESSION['username'] == 'root' ){
-									echo '<div><a href="root.php">平台修改資料</div>';
+									echo '<div><a href="root.php">平台管理</div>';
 									echo '<div><a href="logout.php">平台登出</a></div>';
 								}	
 								else if($_SESSION['username'] == null ){
 									echo '<div><a href="login.php">平台登入</a></div>';
-									echo '<div><a href="register.php">平台註冊</a></div>';
+									echo '<div><a href="regiS0.php">平台註冊</a></div>';
 								}   
 								?>
 								<!-- InstanceEndEditable --></div>

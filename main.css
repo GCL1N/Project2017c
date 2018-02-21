@@ -109,17 +109,12 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 這會同時變更滑鼠及
 	width: 100%;
 	height: 100px;
 }
-#top table tr td #MenuBar1 li a strong {
-	display: block;
-	margin: 0 10px;
+#top table{
+	margin: 0 auto;
+	background-color:  #333333;
 	text-align: center;
-	align-items: center;
 }
-#top > .logo {
-	display: block;
-	margin: 0 10px;
-	height: 100px;
-}
+
 .editarea{
 	height: auto;
 	max-width:90%;

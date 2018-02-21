@@ -3,36 +3,41 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>無標題文件</title>
-
-
 		<body>
 			<?php
-			include("PHPMailerAutoload.php"); //匯入PHPMailer類別       
+			use PHPMailer\PHPMailer\PHPMailer;
+			use PHPMailer\PHPMailer\Exception;
+			require 'vendor/autoload.php'; //匯入PHPMailer類別       
 			echo 'Current PHP version: ' . phpversion();
 			$mail = new PHPMailer(true);
-			$mail->isSMTP();
-			$mail->Host = 'smtp.office365.com';
-			$mail->Port       = 587;
-			$mail->SMTPSecure = 'tls';
-			$mail->SMTPAuth   = true;
-			$mail->Username = '104021018@live.asia.edu.tw';
-			$mail->Password = '19961210';
-			$mail->SetFrom('104021018@live.asia.edu.tw', 'FromEmail');
-			$mail->addAddress('asd96851210@gmail.com', 'ToEmail');
-			//$mail->SMTPDebug  = 3;
-			//$mail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";}; //$mail->Debugoutput = 'echo';
-			$mail->IsHTML(true);
+			try {
+				//Server settings
+				$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+				$mail->isSMTP();                                      // Set mailer to use SMTP
+				$mail->Host = 'smtp.office365.com';  // Specify main and backup SMTP servers
+				$mail->SMTPAuth = true;                               // Enable SMTP authentication
+				$mail->Username = '104021018@live.asia.edu.tw';                 // SMTP username
+				$mail->Password = '19961210';                           // SMTP password
+				$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+				$mail->Port = 587;                                    // TCP port to connect to
 
-			$mail->Subject = 'Project2017c NEW';
-			$mail->Body    = 'NEW USER<br> <a href="http://isrc.ccs.asia.edu.tw/~project2017c/">http://isrc.ccs.asia.edu.tw/~project2017c/</a>';
-			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+				//Recipients
+				$mail->setFrom('104021018@live.asia.edu.tw', 'Mailer');
+				$mail->addAddress('104021018@live.asia.edu.tw', 'Joe User');     // Add a recipient
+							
 
-			if(!$mail->send()) {
-				echo 'Message could not be sent.';
-				echo 'Mailer Error: ' . $mail->ErrorInfo;
-			} else {
+				//Content
+				$mail->isHTML(true);                                  // Set email format to HTML
+				$mail->Subject = 'Project2017c NEW';
+				$mail->Body    = 'NEW USER</b>';
+				$mail->AltBody = 'href="http://isrc.ccs.asia.edu.tw/~project2017c/">http://isrc.ccs.asia.edu.tw/~project2017c/</a>';
+
+				$mail->send();
 				echo 'Message has been sent';
+			} catch (Exception $e) {
+				echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 			}
+			
 			?>
 		</body>
 		</html>
